@@ -1,0 +1,26 @@
+@use '../variables' as *;
+@use '../mixin' as *;
+
+.aircraftHoveredPopup{
+    width: 100%;
+    padding: 10px;
+    background-color: $light-bg;
+    color: $light-text;
+    border-radius: 10px;
+    &.dark{
+        background-color: $dark-bg;
+        color: $dark-text;
+    }
+    .callsign{
+        font-size: 14px;
+    }
+    .country{
+        font-size: 13px;
+        margin-top: 5px;
+    }
+    .contact{
+        @include flex-end;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+}

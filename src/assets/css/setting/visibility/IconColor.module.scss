@@ -1,0 +1,28 @@
+@use '../../mixin' as *;
+@use '../../variables' as *;
+
+.iconColorBox{
+    .iconColor{
+        padding: 10px;
+        @include flex-between;
+        .colorBox{
+            position: relative;
+            .colorBtn{
+                width: 30px;
+                height: 30px;
+                cursor: pointer;
+                position: relative;
+                border-radius: 3px;
+                border: 1px solid $dark-bg;
+                &.dark{
+                    border: 1px solid $light-bg;
+                }
+            }
+            .colorPicker{
+                position: absolute;
+                top:40px;
+                right: 40px;
+            }
+        }
+    }
+}

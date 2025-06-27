@@ -1,0 +1,21 @@
+@use '../variables' as *;
+@use '../mixin' as *;
+
+.btnBox{
+    width: 70px;
+    height: 70px;
+    @include flex-center;
+    flex-wrap: wrap;
+    cursor: pointer;
+    
+    &.active{
+        border-radius: 5px;
+        border: 4px solid $active_color;
+    }
+    .title{
+        width: 100%;
+        font-size: 14px;
+        font-weight: bold;
+        @include flex-center;
+    }
+}

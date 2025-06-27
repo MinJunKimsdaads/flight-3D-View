@@ -1,0 +1,55 @@
+@use '../mixin' as *;
+@use '../variables' as *;
+
+.widgetItem{
+    .header{
+        width: 100%;
+        padding: 10px 15px;
+        @include flex-between;
+        .resetBtn{
+            @include flex-center;
+            cursor: pointer;
+        }
+        border-bottom: 1px solid $dark-bg;
+        &.dark{
+            border-bottom: 1px solid $light-bg;
+        }
+        .airport{
+            cursor: pointer;
+            &:hover{
+                color: $active_color;
+                font-weight: bold;
+            }
+        }
+    }
+    .noData{
+        padding: 10px 15px;
+        border-bottom: 1px solid $dark-bg;
+        &.dark{
+            border-bottom: 1px solid $light-bg;
+        }
+    }
+    .item{
+        padding: 10px 15px;
+        border-bottom: 1px solid $dark-bg;
+        cursor: pointer;
+        &.dark{
+            border-bottom: 1px solid $light-bg;
+        }
+        .callsign{
+            margin-bottom: 10px;
+        }
+        .airport{
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .time{
+            @include flex-end;
+            font-size: 14px;
+        }
+        &:hover{
+            background-color: $active_color;
+            color: #ffffff;
+        }
+    }
+}

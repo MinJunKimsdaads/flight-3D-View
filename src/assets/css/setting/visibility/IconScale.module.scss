@@ -1,0 +1,13 @@
+@use '../../mixin' as *;
+@use '../../variables' as *;
+
+.iconScaleBox{
+    padding: 10px;
+    .iconScale{
+        width: 100%;
+        margin-top: 5px;
+        input{
+            width: 100%;
+        }
+    }
+}

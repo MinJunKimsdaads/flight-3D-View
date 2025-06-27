@@ -1,0 +1,43 @@
+@use '../mixin' as *;
+@use '../variables' as *;
+
+.setting{
+    width: 100%;
+    height: calc(100% - 110px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-bottom: 50px;
+    // 스크롤바 전체 영역
+    &::-webkit-scrollbar {
+        width: 5px; // 세로 스크롤바 너비
+    }
+    // 스크롤바 트랙 (배경)
+    &::-webkit-scrollbar-track {
+        background-color: #f0f0f0; // 트랙 배경색
+        border-radius: 4px;
+    }
+    // 스크롤바 썸 (움직이는 부분)
+    &::-webkit-scrollbar-thumb {
+        background-color: #999; // 썸 색상
+        border-radius: 4px;
+    }
+    // 썸에 호버 시
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: #666;
+    }
+    background-color: $light-bg;
+    color: $light-text;
+    border-radius: 0 0 15px 15px;
+    &.dark{
+        background-color: $dark-bg;
+        color: $dark-text;
+    }
+    .settingMenu{
+        width: 100%;
+        padding: 20px 10px;
+        border-bottom: 1px solid $dark-bg;
+        &.dark{
+            border-bottom: 1px solid $light-bg;
+        }
+    }
+}

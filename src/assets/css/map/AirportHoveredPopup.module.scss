@@ -1,0 +1,25 @@
+@use '../variables' as *;
+@use '../mixin' as *;
+
+.airportHoveredPopup{
+    padding: 10px;
+    background-color: $light-bg;
+    color: $light-text;
+    border-radius: 10px;
+    &.dark{
+        background-color: $dark-bg;
+        color: $dark-text;
+    }
+    .name{
+        font-size: 14px;
+    }
+    .country{
+        font-size: 13px;
+        margin-top: 5px;
+    }
+    .code{
+        @include flex-between;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+}
