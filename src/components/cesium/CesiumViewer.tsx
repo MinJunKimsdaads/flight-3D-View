@@ -1,15 +1,18 @@
 import { Viewer, Cartesian3, Entity, Ion,ConstantPositionProperty } from 'cesium';
 import { useEffect, useRef } from "react";
 import 'cesium/Build/Cesium/Widgets/widgets.css';
-import { useCesiumStore } from '@/store/cesiumStore';
+import { useLocation } from 'react-router-dom';
 
 Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2YWU3ZDhjZC00MmQ3LTQxMDYtYmQ0Mi1mNjJhNmYxMzY3YjIiLCJpZCI6MzE1NDkxLCJpYXQiOjE3NTA4MzY1NzJ9.WnZByGs7wVuhPUFy5tlSFtIxCfUzgtyvyDck79Jh5Zo';
 
 const CesiumViewer = () => {
-  const longitude = useCesiumStore(state => state.longitude);
-  const latitude = useCesiumStore(state => state.latitude);
-  const altitude = useCesiumStore(state => state.altitude);
-  const resetCesium = useCesiumStore(state => state.resetCesium);
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+
+  const longitude = Number(queryParams.get('lon'));
+  const latitude = Number(queryParams.get('lat'));
+  const altitude = Number(queryParams.get('alt'));
 
   const viewerRef = useRef<HTMLDivElement | null>(null);
   const cesiumViewerRef = useRef<Viewer | null>(null);
@@ -31,7 +34,6 @@ const CesiumViewer = () => {
       });
     }
     return () => {
-      console.log('unmounted');
       cesiumViewerRef.current?.destroy();
     };
   }, []);
@@ -76,7 +78,7 @@ const CesiumViewer = () => {
   }, [longitude, latitude, altitude]);
 
   const resetHandler = () => {
-    resetCesium();
+    window.close();
   }
 
   return (

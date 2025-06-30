@@ -1,8 +1,0 @@
-@use '../../mixin' as *;
-@use '../../variables' as *;
-
-.mapProhibitedAreaBox{
-    margin-top: 10px;
-    padding: 0 10px;
-    @include flex-between;
-}

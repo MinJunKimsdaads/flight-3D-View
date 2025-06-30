@@ -4,8 +4,7 @@ import path from 'path';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
-  const isElectron = env.VITE_IS_ELECTRON === 'true';
-  const base = isElectron ? env.VITE_BASE_ELECTRON : env.VITE_BASE_WEB;
+  const base = env.VITE_BASE_WEB;
 
   return {
     base,
