@@ -66,8 +66,10 @@ const CesiumViewer = () => {
     addMap(data.layer);
   },[data.layer])
 
-    useEffect(() => {
-    addExtMap(data.weather);
+  useEffect(() => {
+    if(data.weather){
+      addExtMap(data.weather);
+    }
   },[data.weather])
 
   const toggleMenu = () => {
