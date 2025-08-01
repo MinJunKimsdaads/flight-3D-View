@@ -76,7 +76,7 @@ export const useCesiumViewer = ({
             tileLayer = new UrlTemplateImageryProvider(tile);
         }else{
             tileLayer = new UrlTemplateImageryProvider({
-                url: 'https://b.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
+                url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                 maximumLevel: 19,
                 credit: '© OpenStreetMap contributors',
             })
@@ -86,7 +86,10 @@ export const useCesiumViewer = ({
 
     const addEntity = () => {
         const viewer = cesiumViewerRef.current;
+        console.log(longitude);
         if (!viewer || !longitude || !latitude || !altitude || !direction) return;
+
+        console.log('connection');
         
         const entityPosition = Cartesian3.fromDegrees(longitude, latitude, altitude);
         const cameraPosition = Cartesian3.fromDegrees(longitude, latitude - 0.075, altitude + 300);
