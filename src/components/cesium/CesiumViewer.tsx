@@ -27,9 +27,11 @@ const CesiumViewer = () => {
     lat:0,
     alt:0,
     heading:0,
+    layer:null,
+    weather:null,
   })
 
-  const {viewerRef, isSideView, addMap, addEntity, flyHome, toggleCameraView} = useCesiumViewer({
+  const {viewerRef, isSideView, addMap,addExtMap,addEntity, flyHome, toggleCameraView} = useCesiumViewer({
     longitude:data.lon,
     latitude:data.lat,
     altitude:data.alt,
@@ -38,16 +40,17 @@ const CesiumViewer = () => {
   });
 
   useEffect(() => {
-    addMap(null);
-
     const handleMessage = (event:MessageEvent) => {
       if(event.origin !== 'http://developkmj.dothome.co.kr') return;
       const {payload} = event.data;
+      // console.log(payload);
       setData({
         lon:payload.lon,
         lat:payload.lat,
         alt:payload.alt,
         heading:payload.heading,
+        layer:payload.layer,
+        weather:payload.weather
       })
     }
 
@@ -58,6 +61,14 @@ const CesiumViewer = () => {
   useEffect(() => {
     addEntity();
   },[data]);
+
+  useEffect(() => {
+    addMap(data.layer);
+  },[data.layer])
+
+    useEffect(() => {
+    addExtMap(data.weather);
+  },[data.weather])
 
   const toggleMenu = () => {
     setIsOpen(prev => !prev);

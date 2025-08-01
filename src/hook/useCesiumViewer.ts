@@ -84,12 +84,18 @@ export const useCesiumViewer = ({
         viewer!.imageryLayers.addImageryProvider(tileLayer);
     }
 
+    const addExtMap = (tile) => {
+        let tileLayer;
+        const viewer = cesiumViewerRef.current;
+        if(tile){
+            tileLayer = new UrlTemplateImageryProvider(tile);
+            viewer!.imageryLayers.addImageryProvider(tileLayer);
+        }
+    }
+
     const addEntity = () => {
         const viewer = cesiumViewerRef.current;
-        console.log(longitude);
         if (!viewer || !longitude || !latitude || !altitude || !direction) return;
-
-        console.log('connection');
         
         const entityPosition = Cartesian3.fromDegrees(longitude, latitude, altitude);
         const cameraPosition = Cartesian3.fromDegrees(longitude, latitude - 0.075, altitude + 300);
@@ -168,6 +174,7 @@ export const useCesiumViewer = ({
         viewerRef,
         isSideView,
         addMap,
+        addExtMap,
         addEntity,
         flyHome,
         toggleCameraView,
