@@ -1,4 +1,4 @@
-import { Viewer, Cartesian3, Entity, Ion, ConstantPositionProperty, Math, HeadingPitchRoll, Transforms, JulianDate  } from 'cesium';
+import { Viewer, Cartesian3, Entity, Ion, ConstantPositionProperty, Math, HeadingPitchRoll, Transforms, JulianDate, UrlTemplateImageryProvider  } from 'cesium';
 import { useEffect, useRef, useState } from "react";
 
 interface UseCesiumViewerParamss {
@@ -67,6 +67,22 @@ export const useCesiumViewer = ({
             cesiumViewerRef.current = null;
         };
     },[])
+
+    const addMap = (tile) => {
+        let tileLayer;
+        const viewer = cesiumViewerRef.current;
+        viewer?.imageryLayers.removeAll();
+        if(tile){
+            tileLayer = new UrlTemplateImageryProvider(tile);
+        }else{
+            tileLayer = new UrlTemplateImageryProvider({
+                url: 'https://b.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
+                maximumLevel: 19,
+                credit: '© OpenStreetMap contributors',
+            })
+        }
+        viewer!.imageryLayers.addImageryProvider(tileLayer);
+    }
 
     const addEntity = () => {
         const viewer = cesiumViewerRef.current;
@@ -148,6 +164,7 @@ export const useCesiumViewer = ({
     return {
         viewerRef,
         isSideView,
+        addMap,
         addEntity,
         flyHome,
         toggleCameraView,
